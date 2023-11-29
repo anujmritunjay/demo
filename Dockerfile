@@ -4,6 +4,6 @@ WORKDIR /console
 
 COPY . .
 
-/dist/demo /usr/share/nginx/html
+COPY /dist/demo /usr/share/nginx/html
 
 EXPOSE 80
