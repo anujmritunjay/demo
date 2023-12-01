@@ -5,8 +5,14 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:upload:prod": "npm run git:checkout:master && npm run git:pull:master && rmdir /Q /S upload\\dist && mkdir upload\\dist && npm run build:prod && xcopy dist\\demo upload\\dist /s/e/c/y/h && npm run git:push:master",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "build:prod": "ng build --configuration=production && npm run generate-build-version",
+    "git:checkout:master": "cd upload && git checkout master",
+    "git:pull:master": "cd upload && git pull origin master",
+    "git:push:master": "cd upload && git add . && git commit -m %npm_package_config_m% && git push origin master",
+    "test": "ng test",
+    "generate-build-version": "node generate-build-version"
   },
   "private": true,
   "dependencies": {
